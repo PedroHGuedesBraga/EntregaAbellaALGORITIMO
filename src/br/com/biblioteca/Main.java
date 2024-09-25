@@ -7,7 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ArvoreBinaria arvore = new ArvoreBinaria();
 
-        // Adicionando 3 livros à árvore no início
+        
         Livro livro1 = new Livro("Dom Casmurro", "Machado de Assis", 1899);
         Livro livro2 = new Livro("A Moreninha", "Joaquim Manuel de Macedo", 1844);
         Livro livro3 = new Livro("O Cortiço", "Aluísio Azevedo", 1890);
@@ -18,7 +18,7 @@ public class Main {
 
         System.out.println("Três livros foram adicionados automaticamente à árvore.");
 
-        // Menu para o usuário
+        
         while (true) {
             System.out.println("\n1. Adicionar livro");
             System.out.println("2. Listar todos os livros");
@@ -27,7 +27,7 @@ public class Main {
             System.out.println("5. Sair");
 
             int escolha = scanner.nextInt();
-            scanner.nextLine(); // Consumir nova linha
+            scanner.nextLine(); 
 
             switch (escolha) {
                 case 1:
