@@ -3,7 +3,7 @@ package br.com.biblioteca;
 public class ArvoreBinaria {
     private No raiz;
 
-    // Método para adicionar livro na árvore
+   
     public void adicionar(Livro livro) {
         raiz = adicionarRecursivo(raiz, livro);
     }
@@ -20,7 +20,7 @@ public class ArvoreBinaria {
         return atual;
     }
 
-    // Método para listar todos os livros em ordem alfabética (in-order traversal)
+   
     public void listarLivros() {
         listarRecursivo(raiz);
     }
@@ -33,14 +33,14 @@ public class ArvoreBinaria {
         }
     }
 
-    // Método para buscar um livro específico pelo título
+   
     public Livro buscarLivro(String titulo) {
         return buscarRecursivo(raiz, titulo);
     }
 
     private Livro buscarRecursivo(No atual, String titulo) {
         if (atual == null) {
-            return null;  // Livro não encontrado
+            return null;  
         }
         if (titulo.equals(atual.livro.getTitulo())) {
             return atual.livro;
@@ -51,7 +51,7 @@ public class ArvoreBinaria {
         return buscarRecursivo(atual.direita, titulo);
     }
 
-    // Método para recomendar livros baseados no autor
+    
     public void recomendarPorAutor(String autor) {
         System.out.println("Recomendações para o autor " + autor + ":");
         recomendarRecursivo(raiz, autor);
