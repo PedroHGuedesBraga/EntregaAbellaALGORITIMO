@@ -4,22 +4,32 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        BibliotecaSequencial biblioteca = new BibliotecaSequencial(100);
         Scanner scanner = new Scanner(System.in);
+        ArvoreBinaria arvore = new ArvoreBinaria();
 
+        // Adicionando 3 livros à árvore no início
+        Livro livro1 = new Livro("Dom Casmurro", "Machado de Assis", 1899);
+        Livro livro2 = new Livro("A Moreninha", "Joaquim Manuel de Macedo", 1844);
+        Livro livro3 = new Livro("O Cortiço", "Aluísio Azevedo", 1890);
+
+        arvore.adicionar(livro1);
+        arvore.adicionar(livro2);
+        arvore.adicionar(livro3);
+
+        System.out.println("Três livros foram adicionados automaticamente à árvore.");
+
+        // Menu para o usuário
         while (true) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Adicionar Livro");
-            System.out.println("2. Listar Livros");
-            System.out.println("3. Ordenar por Título (Bubble Sort)");
-            System.out.println("4. Ordenar por Autor (Quick Sort)");
+            System.out.println("\n1. Adicionar livro");
+            System.out.println("2. Listar todos os livros");
+            System.out.println("3. Buscar livro por título");
+            System.out.println("4. Recomendar livros por autor");
             System.out.println("5. Sair");
 
-            System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); 
+            int escolha = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
 
-            switch (opcao) {
+            switch (escolha) {
                 case 1:
                     System.out.print("Digite o título do livro: ");
                     String titulo = scanner.nextLine();
@@ -27,30 +37,42 @@ public class Main {
                     String autor = scanner.nextLine();
                     System.out.print("Digite o ano de publicação: ");
                     int ano = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine(); // Consumir nova linha
 
-                    Livro livro = new Livro(titulo, autor, ano);
-                    biblioteca.adicionarLivro(livro);
+                    Livro novoLivro = new Livro(titulo, autor, ano);
+                    arvore.adicionar(novoLivro);
+                    System.out.println("Livro adicionado com sucesso!");
                     break;
+
                 case 2:
-                    biblioteca.listarLivros();
+                    System.out.println("Lista de livros:");
+                    arvore.listarLivros();
                     break;
+
                 case 3:
-                    biblioteca.bubbleSortPorTitulo();
-                    System.out.println("Livros ordenados por título.");
+                    System.out.print("Digite o título do livro que deseja buscar: ");
+                    String tituloBusca = scanner.nextLine();
+                    Livro livroEncontrado = arvore.buscarLivro(tituloBusca);
+                    if (livroEncontrado != null) {
+                        System.out.println("Livro encontrado: " + livroEncontrado);
+                    } else {
+                        System.out.println("Livro não encontrado.");
+                    }
                     break;
+
                 case 4:
-                    biblioteca.quickSortPorAutor(0, biblioteca.getCount() - 1);
-                    System.out.println("Livros ordenados por autor.");
+                    System.out.print("Digite o autor para recomendar livros: ");
+                    String autorRecomendacao = scanner.nextLine();
+                    arvore.recomendarPorAutor(autorRecomendacao);
                     break;
+
                 case 5:
-                    scanner.close();
                     System.out.println("Saindo...");
-                    System.exit(0);
-                    break;
+                    scanner.close();
+                    return;
+
                 default:
-                    System.out.println("Opção inválida!");
-                    break;
+                    System.out.println("Escolha inválida. Tente novamente.");
             }
         }
     }
